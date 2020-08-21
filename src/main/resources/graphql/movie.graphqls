@@ -1,0 +1,32 @@
+
+type Movie {
+	id: ID
+	title: String
+	year: String
+}
+
+type PaginatedMovies {
+	scrollId: String
+	hits: Int!
+	totHits: Long!
+	pages: Long
+	lastPage: Boolean!
+	searchInMillis:Long!
+	results: [Movie]!
+}
+
+type Query {
+	findAllMovies(size: Int, scrollId: String): PaginatedMovies!
+	countMovies: Long!
+}
+
+type Mutation {
+	deleteMovie(id: ID!): Boolean
+	createMovie: Movie
+}
+
+schema {
+ query: Query
+ mutation: Mutation
+}
+
